@@ -6,9 +6,7 @@ def logisticFunction(z):
     return 1.0 / (1 + np.exp(-z))
 
 def lossFunction(x, y, w):
-    temp1 = np.dot(logisticFunction(np.dot(x, w.T)).T, y)
-    temp2 = np.dot(1 - logisticFunction(np.dot(x, w.T)).T, 1 - y)
-    return -(temp1 + temp2)
+    return -np.dot(y.T, np.dot(x, w.T)) + np.sum(np.log(1 + np.exp(np.dot(x, w.T))))
 
 def logisticRegression(trainData, trainDataLabel):
     w = np.ones((1, np.shape(trainData)[1]))
